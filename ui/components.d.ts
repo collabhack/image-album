@@ -12,6 +12,7 @@ export namespace Components {
     }
     interface IaAlbumView {
         "content"?: model.Album;
+        "identifier"?: string;
     }
     interface IaApp {
     }
@@ -66,6 +67,7 @@ declare namespace LocalJSX {
     }
     interface IaAlbumView {
         "content"?: model.Album;
+        "identifier"?: string;
     }
     interface IaApp {
     }

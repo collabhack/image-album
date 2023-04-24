@@ -10,14 +10,18 @@ export async function list(request: http.Request, _: Context): Promise<http.Resp
 	if (!authorization)
 		result = gracely.client.unauthorized()
 	else
-	result = [{
-		title: "Beard",
-		id: "foo",
-		content: [{
-			url: "http://placebeard.it/640/480",
-			description: "bar",
-		}],
-	}]
+		result = [
+			{
+				title: "Beard",
+				id: "foo",
+				content: [
+					{
+						url: "http://placebeard.it/640/480",
+						description: "bar",
+					},
+				],
+			},
+		]
 	return result
 }
 router.add("GET", "/api/album", list)
