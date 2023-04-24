@@ -3,7 +3,7 @@ name = "worker-template"
 workers_dev = true
 routes = []
 vars = { }
-main = "./dist/_worker.js"
+main = "./dist/_worker.mjs"
 port = 8787
 kv_namespaces = [
   { binding = "store", id = "aaaaaaaaaaaaaa", preview_id = "bbbbbbbbbbb" }
@@ -14,7 +14,7 @@ bucket_name = '<YOUR_BUCKET_NAMESPACE>'
 
 [build]
 command = "npm install && npm run build:api"
-format = "modules"
+upload.format = "modules"
 
 [env.production]
 workers_dev = false
