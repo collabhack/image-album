@@ -1,18 +1,30 @@
 import * as gracely from "gracely"
 import * as http from "cloudly-http"
-import * as model from "../../../model"
+import { model } from "../../../model"
 import { Context } from "../../Context"
 import { router } from "../../router"
 
-export async function create(request: http.Request, _: Context): Promise<http.Response.Like | any> {
+export async function create(request: http.Request, context: Context): Promise<http.Response.Like | any> {
 	let result: gracely.Result
-	const item = await request.body
-	if (!request.header.authorization)
+	const body = await request.body
+	const album = request.parameter.album
+	const content = context.content
+
+	if (gracely.Error.is(content))
+		result = content
+	else if (!album || typeof album != "string")
+		result = gracely.client.invalidPathArgument(
+			"/api/album/:album/content",
+			"album",
+			"string",
+			"Identifier for the content album."
+		)
+	else if (!request.header.authorization)
 		result = gracely.client.unauthorized()
-	else if (!model.Item.is(item))
-		result = gracely.client.invalidContent("Item", "Body is not a valid item.")
+	else if (!model.Image.is(body))
+		result = gracely.client.invalidContent("Image", "Body must be an Image to put in the album.")
 	else
-		result = gracely.success.created(item)
+		result = gracely.success.created(await content.set(album, body))
 	return result
 }
 router.add("POST", "/api/album/:album/content", create)
