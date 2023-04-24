@@ -2,6 +2,7 @@ import { Config } from "@stencil/core"
 
 // https://stenciljs.com/docs/config
 export const config: Config = {
+	namespace: "image-album",
 	globalStyle: "ui/global/app.css",
 	globalScript: "ui/global/app.ts",
 	taskQueue: "async",
