@@ -5,11 +5,48 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { model } from "../model";
+export { model } from "../model";
 export namespace Components {
+    interface IaAlbumCreate {
+    }
+    interface IaAlbumView {
+        "content"?: model.Album;
+    }
+    interface IaApp {
+    }
+    interface SmoothlyInputFile {
+        "mode": "folder" | "file" | "files";
+        "name"?: string;
+    }
     interface TemplateVersion {
     }
 }
 declare global {
+    interface HTMLIaAlbumCreateElement extends Components.IaAlbumCreate, HTMLStencilElement {
+    }
+    var HTMLIaAlbumCreateElement: {
+        prototype: HTMLIaAlbumCreateElement;
+        new (): HTMLIaAlbumCreateElement;
+    };
+    interface HTMLIaAlbumViewElement extends Components.IaAlbumView, HTMLStencilElement {
+    }
+    var HTMLIaAlbumViewElement: {
+        prototype: HTMLIaAlbumViewElement;
+        new (): HTMLIaAlbumViewElement;
+    };
+    interface HTMLIaAppElement extends Components.IaApp, HTMLStencilElement {
+    }
+    var HTMLIaAppElement: {
+        prototype: HTMLIaAppElement;
+        new (): HTMLIaAppElement;
+    };
+    interface HTMLSmoothlyInputFileElement extends Components.SmoothlyInputFile, HTMLStencilElement {
+    }
+    var HTMLSmoothlyInputFileElement: {
+        prototype: HTMLSmoothlyInputFileElement;
+        new (): HTMLSmoothlyInputFileElement;
+    };
     interface HTMLTemplateVersionElement extends Components.TemplateVersion, HTMLStencilElement {
     }
     var HTMLTemplateVersionElement: {
@@ -17,13 +54,32 @@ declare global {
         new (): HTMLTemplateVersionElement;
     };
     interface HTMLElementTagNameMap {
+        "ia-album-create": HTMLIaAlbumCreateElement;
+        "ia-album-view": HTMLIaAlbumViewElement;
+        "ia-app": HTMLIaAppElement;
+        "smoothly-input-file": HTMLSmoothlyInputFileElement;
         "template-version": HTMLTemplateVersionElement;
     }
 }
 declare namespace LocalJSX {
+    interface IaAlbumCreate {
+    }
+    interface IaAlbumView {
+        "content"?: model.Album;
+    }
+    interface IaApp {
+    }
+    interface SmoothlyInputFile {
+        "mode"?: "folder" | "file" | "files";
+        "name"?: string;
+    }
     interface TemplateVersion {
     }
     interface IntrinsicElements {
+        "ia-album-create": IaAlbumCreate;
+        "ia-album-view": IaAlbumView;
+        "ia-app": IaApp;
+        "smoothly-input-file": SmoothlyInputFile;
         "template-version": TemplateVersion;
     }
 }
@@ -31,6 +87,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ia-album-create": LocalJSX.IaAlbumCreate & JSXBase.HTMLAttributes<HTMLIaAlbumCreateElement>;
+            "ia-album-view": LocalJSX.IaAlbumView & JSXBase.HTMLAttributes<HTMLIaAlbumViewElement>;
+            "ia-app": LocalJSX.IaApp & JSXBase.HTMLAttributes<HTMLIaAppElement>;
+            "smoothly-input-file": LocalJSX.SmoothlyInputFile & JSXBase.HTMLAttributes<HTMLSmoothlyInputFileElement>;
             "template-version": LocalJSX.TemplateVersion & JSXBase.HTMLAttributes<HTMLTemplateVersionElement>;
         }
     }

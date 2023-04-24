@@ -1,0 +1,23 @@
+:host {
+	display: block;
+	width: 50vw;
+	border-color: blue;
+}
+:host > h3 {
+	text-align: center;
+	padding: 5px;
+}
+:host > content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+:host > content > div > img {
+	border-radius: 10px;
+	width: 200px;
+	height: 200px;
+}
+:host > content > div {
+	align-items: center;
+	text-align: center;
+	padding-bottom: 2px;
+}
