@@ -17,11 +17,13 @@
         "ts-jest",
         {
           "tsconfig": "./tsconfig.test.json",
-					"useESM": true
+          "useESM": true
         }
       ]
     },
-		"extensionsToTreatAsEsm": [".ts"],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!(cryptly|authly|isoly|gracely|cloudly-http|cloudly-router|cloudly-formdata)/.*)"
     ],
@@ -89,6 +91,7 @@
     "cloudly-rest": "^0.1.1",
     "cloudly-router": "^0.1.1",
     "gracely": "^2.0.3",
-    "smoothly": "^0.3.39"
+    "smoothly": "^1.0.0-alpha.36",
+    "urlpattern-polyfill": "^8.0.2"
   }
 }

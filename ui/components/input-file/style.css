@@ -1,0 +1,15 @@
+:host {
+	display: block;
+}
+:host > input {
+	margin: .7em .5em;
+}
+:host > input::file-selector-button {
+  padding: .5em .8em;
+  border-radius: 1em;
+	border: none;
+  background-color: rgb(var(--smoothly-light-color));
+}
+:host > input::file-selector-button:hover {
+  background-color: rgb(var(--smoothly-light-shade));
+}
