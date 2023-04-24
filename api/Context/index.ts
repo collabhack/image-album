@@ -1,10 +1,15 @@
 import * as gracely from "gracely"
-import { FormData } from "cloudly-formdata"
 import * as http from "cloudly-http"
 import { router } from "../router"
+import { Content } from "./Content"
 import { Environment } from "./Environment"
 
 export class Context {
+	#content?: Content | gracely.Error
+	get content(): Content | gracely.Error {
+		return (this.#content ??= Content.open(this.environment))
+	}
+
 	constructor(public readonly environment: Environment, private readonly request: http.Request) {}
 	async authenticate(request: http.Request): Promise<"admin" | undefined> {
 		return this.environment.adminSecret && request.header.authorization == `Basic ${this.environment.adminSecret}`
@@ -35,16 +40,3 @@ export class Context {
 		return result
 	}
 }
-
-http.Parser.add(
-	async request =>
-		Object.fromEntries(
-			(
-				await FormData.parse(
-					new Uint8Array(await request.arrayBuffer()),
-					request.headers.get("Content-Type") ?? "multipart/form-data"
-				)
-			).entries()
-		),
-	"multipart/form-data"
-)
