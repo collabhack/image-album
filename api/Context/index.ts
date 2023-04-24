@@ -41,8 +41,9 @@ export class Context {
 		return result
 	}
 
-	albumStore() {
-		return this.environment.store ? 
+	#albumStore?: KeyValueStore | gracely.Error
+	get albumStore() {
+		return this.#albumStore ??= this.environment.store ? 
 			KeyValueStore.partition(
 				KeyValueStore.Json.create(KeyValueStore.open(this.environment.store)),
 				"album|",
