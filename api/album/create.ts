@@ -11,7 +11,7 @@ export async function create(request: http.Request, context: Context): Promise<h
 	if (!request.header.authorization)
 		result = gracely.client.unauthorized()
 	else if (!model.Album.is(album))
-		result = gracely.client.invalidContent("Item", "Body is not a valid item.")
+		result = gracely.client.invalidContent("Album", "Body is not a valid album.")
 	else if (gracely.Error.is(store))
 		result = store
 	else {
