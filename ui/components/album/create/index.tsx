@@ -15,7 +15,7 @@ export class AlbumCreate {
 			url: "http://127.0.0.1:8787/api/album",
 			body: album,
 			method: "POST",
-			header: { authorization: "placeholder" },
+			header: { authorization: "placeholder", contentType: "application/json" },
 		})
 		const response = await http.fetch(request)
 		const body = await response.body

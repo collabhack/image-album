@@ -7,7 +7,7 @@ import { router } from "../router"
 export async function fetch(request: http.Request, _: Context): Promise<http.Response.Like | any> {
 	let result: model.Album | gracely.Error
 	const id = request.parameter.id
-	const store = _.albumStore;
+	const store = _.albumStore
 	if (!request.header.authorization)
 		result = gracely.client.unauthorized()
 	else if (!id || id.length <= 0 || typeof id != "string")
@@ -15,7 +15,7 @@ export async function fetch(request: http.Request, _: Context): Promise<http.Res
 	else if (gracely.Error.is(store))
 		result = store
 	else
-		result = (await store.get(id))?.value ?? gracely.client.notFound(`album not found for ${id}`);
+		result = (await store.get(id))?.value ?? gracely.client.notFound(`album not found for ${id}`)
 	return result
 }
 router.add("GET", "/api/album/:id", fetch)

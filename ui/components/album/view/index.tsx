@@ -8,13 +8,13 @@ import { model } from "../../../../model"
 	scoped: true,
 })
 export class AlbumView implements ComponentWillLoad {
-	@Prop() content?: model.Album
+	@Prop() content?: model.Album[]
 	@Prop() identifier?: string
 
 	@Watch("identifier")
 	async load(identifier?: string) {
 		if (identifier) {
-			const response = await http.fetch({ url: `http://127.0.0.1:8787/api/album/${identifier}` })
+			const response = await http.fetch({ url: `http://127.0.0.1:8787/api/album`, header: { authorization: "asdf" } })
 			console.log(response)
 
 			if (response.status < 300) {
@@ -31,17 +31,17 @@ export class AlbumView implements ComponentWillLoad {
 		return (
 			<Host>
 				{this.content
-					? [
-							<h3>{this.content.title}</h3>,
+					? this.content.map(a => [
+							<h3>{a.title}</h3>,
 							<content>
-								{this.content.content.map(image => (
+								{a.content?.map(image => (
 									<div>
 										<img src={image.url} />
 										<p>{image.description}</p>
 									</div>
 								))}
 							</content>,
-					  ]
+					  ])
 					: "no content"}
 			</Host>
 		)

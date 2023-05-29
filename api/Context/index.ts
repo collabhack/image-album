@@ -1,6 +1,7 @@
 import * as gracely from "gracely"
 import * as http from "cloudly-http"
 import { KeyValueStore } from "cloudly-storage"
+import * as model from "../../model"
 import { router } from "../router"
 import { Content } from "./Content"
 import { Environment } from "./Environment"
@@ -41,14 +42,10 @@ export class Context {
 		return result
 	}
 
-	#albumStore?: KeyValueStore | gracely.Error
+	#albumStore?: KeyValueStore<model.Album> | gracely.Error
 	get albumStore() {
-		return this.#albumStore ??= this.environment.store ? 
-			KeyValueStore.partition(
-				KeyValueStore.Json.create(KeyValueStore.open(this.environment.store)),
-				"album|",
-			)
-			: gracely.server.misconfigured("store", "de nada")
-	}  
-
+		return (this.#albumStore ??= this.environment.store
+			? KeyValueStore.partition(KeyValueStore.Json.create(KeyValueStore.open(this.environment.store)), "album|")
+			: gracely.server.misconfigured("store", "de nada"))
+	}
 }

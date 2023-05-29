@@ -8,10 +8,9 @@ export interface Album extends Album.Creatable {
 
 export namespace Album {
 	export type Creatable = AlbumCreatable
-	// export const Creatable = AlbumCreatable
-	
-	export function is(value:any | Album): value is Album {
+	export const Creatable = AlbumCreatable
+
+	export function is(value: any | Album): value is Album {
 		return typeof value == "object" && typeof value.id == "string" && typeof value.title == "string"
 	}
 }
-
